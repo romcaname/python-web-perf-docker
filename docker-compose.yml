@@ -7,9 +7,14 @@ services:
     environment:
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test
+    build:
+      context: .
+      dockerfile: Dockerfile-db
     ports:
       - "5432:5432"
   backend_service:
+    depends_on:
+      - db
     build:
       context: .
       dockerfile: Dockerfile_BE
@@ -21,6 +26,8 @@ services:
       bash -c "./serve-uvicorn-starlette.sh"
     ports:
       - "8000:8000"
+    links:
+      - db
     restart: always
   frontend_service:
     depends_on:
@@ -35,5 +42,4 @@ services:
     links:
       - backend_service
     command: >
-      bash -c "ab -c 1 -n 100 http://backend_service:8000/test && tail -f /dev/null"
-    restart: always
+      bash -c "ab -c 1 -n 100 http://backend_service:8000/test > current_run.txt 2>&1"
