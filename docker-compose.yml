@@ -23,12 +23,14 @@ services:
     environment:
       - PWPWORKERS=4
     command: >
-      bash -c "python wait_for_postgres.py && ./serve-uvicorn-starlette.sh"
+      bash -c "python wait_for_postgres.py && ./serve-gunicorn-flask.sh"
     ports:
       - "8000:8000"
     links:
       - db
     restart: always
+    logging:
+        driver: none
   frontend_service:
     depends_on:
       - backend_service
