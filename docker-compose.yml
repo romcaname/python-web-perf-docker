@@ -15,13 +15,9 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: '1'
           memory: 500MB
-        reservations:
-          cpus: '2'
-          memory: 1GB
   backend_service:
-    image: python:3.7-slim-stretch
     depends_on:
       - db
     build:
@@ -34,9 +30,6 @@ services:
         limits:
           cpus: '2'
           memory: 500MB
-        reservations:
-          cpus: '2'
-          memory: 2GB
     environment:
       - PWPWORKERS=4
     command: >
@@ -49,7 +42,6 @@ services:
     logging:
         driver: none
   frontend_service:
-    image: python:3.7-slim-stretch
     depends_on:
       - backend_service
     build:
@@ -62,9 +54,6 @@ services:
         limits:
           cpus: '1'
           memory: 500MB
-        reservations:
-          cpus: '1'
-          memory: 1GB
     environment:
       - PWPWORKERS=2
     links:
