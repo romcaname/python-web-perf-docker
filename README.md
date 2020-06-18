@@ -45,3 +45,10 @@ copy into a postgres database that has `schema.sql` loaded.
 ## Outcomes
 
 In `/runs`
+
+
+```
+docker stop $(docker ps -a -q)    # Stops all Docker containers
+docker rm $(docker ps -a -q)      # removes all Docker containers
+docker rmi $(docker images -q)    # deletes all images
+```
