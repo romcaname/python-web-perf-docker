@@ -7,6 +7,7 @@ uvicorn~=0.11.5
 hypercorn
 uwsgi~=2.0.0
 aiopg~=1.0.0
+requests
 quart
 fastapi
 gevent~=20.5.0

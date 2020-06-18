@@ -31,16 +31,22 @@ services:
           cpus: '2'
           memory: 500MB
     environment:
-      - PWPWORKERS=2
+      - PWPWORKERS=20
     command: >
-      bash -c "python wait_for_postgres.py && ./serve-uvicorn-quart.sh"
+
+      bash -c "
+      while ! nc -z external_service 8001;
+        do
+          echo sleeping;
+          sleep 1;
+        done;
+      python wait_for_postgres.py && ./serve-gunicorn-flask.sh"
     ports:
       - "8000:8000"
     links:
       - db
+      - external_service
     restart: always
-    logging:
-        driver: none
   frontend_service:
     depends_on:
       - backend_service
@@ -65,5 +71,23 @@ services:
         done;
         echo Connected!;
 
-      ./run-benchmark.sh"
+      ./run-external-benchmark.sh"
+  external_service:
+    build:
+      context: .
+      dockerfile: Dockerfile_ES
+    volumes:
+      - ./:/code
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 500MB
+    command: >
+      bash -c "./serve-external-gunicorn-flask.sh"
+    ports:
+      - "8001:8001"
+    links:
+      - db
+    restart: always
 
