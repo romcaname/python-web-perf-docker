@@ -12,14 +12,31 @@ services:
       dockerfile: Dockerfile-db
     ports:
       - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 500MB
+        reservations:
+          cpus: '2'
+          memory: 1GB
   backend_service:
+    image: python:3.7-slim-stretch
     depends_on:
       - db
     build:
       context: .
       dockerfile: Dockerfile_BE
     volumes:
-      - ./:/code
+      - ./:/code,delegated
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 500MB
+        reservations:
+          cpus: '2'
+          memory: 2GB
     environment:
       - PWPWORKERS=4
     command: >
@@ -29,7 +46,10 @@ services:
     links:
       - db
     restart: always
+    logging:
+        driver: none
   frontend_service:
+    image: python:3.7-slim-stretch
     depends_on:
       - backend_service
     build:
@@ -37,8 +57,16 @@ services:
       dockerfile: Dockerfile_FE
     volumes:
       - ./:/code
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 500MB
+        reservations:
+          cpus: '1'
+          memory: 1GB
     environment:
-      - PWPWORKERS=4
+      - PWPWORKERS=2
     links:
       - backend_service
     command: >

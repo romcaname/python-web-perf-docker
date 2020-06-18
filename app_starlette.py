@@ -4,6 +4,11 @@ from starlette.routing import Route
 
 from async_db import get_row
 
+import logging
+
+logger = logging.getLogger()
+logger.setLevel('CRITICAL')
+
 
 async def homepage(request):
     a, b = await get_row()
