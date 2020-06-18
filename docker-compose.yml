@@ -23,7 +23,7 @@ services:
     environment:
       - PWPWORKERS=4
     command: >
-      bash -c "./serve-uvicorn-starlette.sh"
+      bash -c "python wait_for_postgres.py && ./serve-uvicorn-starlette.sh"
     ports:
       - "8000:8000"
     links:
@@ -42,4 +42,13 @@ services:
     links:
       - backend_service
     command: >
-      bash -c "ab -c 1 -n 100 http://backend_service:8000/test > current_run.txt 2>&1"
+      bash -c "
+      while ! nc -z backend_service 8000;
+        do
+          echo sleeping;
+          sleep 1;
+        done;
+        echo Connected!;
+
+      ./run-benchmark.sh"
+
