@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-uvicorn -w $PWPWORKERS --bind :8000 app_flask:app
+uvicorn --host 0.0.0.0 --port 8000 --workers $PWPWORKERS app_quart:app

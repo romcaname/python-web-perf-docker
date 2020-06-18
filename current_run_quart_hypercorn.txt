@@ -1,0 +1,124 @@
+cpu 2, worker 2
+
+CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+48212a4d14cc        python-web-perf-docker_db_1                 13.22%              37.67MiB / 500MiB   7.53%               970kB / 1.36MB      0B / 0B             21
+81d0de63f05e        python-web-perf-docker_backend_service_1    165.62%             116.6MiB / 500MiB   23.33%              4.8MB / 5.17MB      0B / 0B             4
+3971072ecd2d        python-web-perf-docker_frontend_service_1   10.95%              3.508MiB / 500MiB   0.70%               4.2MB / 3.44MB      0B / 0B             2
+
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 10000 requests
+Completed 20000 requests
+Completed 30000 requests
+Completed 40000 requests
+Completed 50000 requests
+Completed 60000 requests
+Completed 70000 requests
+Completed 80000 requests
+Completed 90000 requests
+Completed 100000 requests
+Finished 100000 requests
+
+
+Server Software:        hypercorn-h11
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /test
+Document Length:        48 bytes
+
+Concurrency Level:      100
+Time taken for tests:   193.640 seconds
+Complete requests:      100000
+Failed requests:        0
+Total transferred:      20400000 bytes
+HTML transferred:       4800000 bytes
+Requests per second:    516.42 [#/sec] (mean)
+Time per request:       193.640 [ms] (mean)
+Time per request:       1.936 [ms] (mean, across all concurrent requests)
+Transfer rate:          102.88 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.2      0      26
+Processing:     3  193 181.7    129    1084
+Waiting:        3  193 181.7    129    1083
+Total:          3  194 181.7    129    1084
+
+Percentage of the requests served within a certain time (ms)
+  50%    129
+  66%    319
+  75%    335
+  80%    348
+  90%    408
+  95%    485
+  98%    584
+  99%    646
+ 100%   1084 (longest request)
+
+
+
+cpu 2, worker 3
+
+CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+42478d61f9db        python-web-perf-docker_db_1                 13.66%              48.94MiB / 500MiB   9.79%               1.17MB / 1.49MB     0B / 0B             29
+0535d1c47eed        python-web-perf-docker_backend_service_1    210.58%             159.6MiB / 500MiB   31.93%              5.22MB / 5.72MB     0B / 0B             5
+f5cd06a013dc        python-web-perf-docker_frontend_service_1   12.25%              3.695MiB / 500MiB   0.74%               4.55MB / 3.73MB     0B / 0B             2
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 10000 requests
+Completed 20000 requests
+Completed 30000 requests
+Completed 40000 requests
+Completed 50000 requests
+Completed 60000 requests
+Completed 70000 requests
+Completed 80000 requests
+Completed 90000 requests
+Completed 100000 requests
+Finished 100000 requests
+
+
+Server Software:        hypercorn-h11
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /test
+Document Length:        48 bytes
+
+Concurrency Level:      100
+Time taken for tests:   172.858 seconds
+Complete requests:      100000
+Failed requests:        0
+Total transferred:      20400000 bytes
+HTML transferred:       4800000 bytes
+Requests per second:    578.51 [#/sec] (mean)
+Time per request:       172.858 [ms] (mean)
+Time per request:       1.729 [ms] (mean, across all concurrent requests)
+Transfer rate:          115.25 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.1      0       6
+Processing:     3  173 193.9     52    1380
+Waiting:        3  172 193.9     52    1379
+Total:          4  173 194.0     53    1380
+
+Percentage of the requests served within a certain time (ms)
+  50%     53
+  66%    193
+  75%    341
+  80%    396
+  90%    444
+  95%    523
+  98%    634
+  99%    734
+ 100%   1380 (longest request)

@@ -24,16 +24,16 @@ services:
       context: .
       dockerfile: Dockerfile_BE
     volumes:
-      - ./:/code,delegated
+      - ./:/code
     deploy:
       resources:
         limits:
           cpus: '2'
           memory: 500MB
     environment:
-      - PWPWORKERS=4
+      - PWPWORKERS=2
     command: >
-      bash -c "python wait_for_postgres.py && ./serve-gunicorn-flask.sh"
+      bash -c "python wait_for_postgres.py && ./serve-uvicorn-quart.sh"
     ports:
       - "8000:8000"
     links:
@@ -54,8 +54,6 @@ services:
         limits:
           cpus: '1'
           memory: 500MB
-    environment:
-      - PWPWORKERS=2
     links:
       - backend_service
     command: >
