@@ -29,9 +29,9 @@ services:
       resources:
         limits:
           cpus: '2'
-          memory: 500MB
+          memory: 2GB
     environment:
-      - PWPWORKERS=20
+      - PWPWORKERS=50
     command: >
 
       bash -c "
@@ -82,7 +82,7 @@ services:
       resources:
         limits:
           cpus: '2'
-          memory: 500MB
+          memory: 1GB
     command: >
       bash -c "./serve-external-gunicorn-flask.sh"
     ports:

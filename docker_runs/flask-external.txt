@@ -250,3 +250,113 @@ Percentage of the requests served within a certain time (ms)
   98%   5249
   99%   5249
  100%   5249 (longest request)
+
+
+core 2, worker 50, external 50
+
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Finished 500 requests
+
+
+Server Software:        gunicorn/20.0.4
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /external-test
+Document Length:        12 bytes
+
+Concurrency Level:      50
+Time taken for tests:   33.391 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      82000 bytes
+HTML transferred:       6000 bytes
+Requests per second:    14.97 [#/sec] (mean)
+Time per request:       3339.123 [ms] (mean)
+Time per request:       66.782 [ms] (mean, across all concurrent requests)
+Transfer rate:          2.40 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   2.1      0      11
+Processing:  2476 3227 2120.9   2521   10700
+Waiting:     2476 3227 2121.0   2520   10700
+Total:       2476 3228 2122.9   2521   10706
+
+Percentage of the requests served within a certain time (ms)
+  50%   2521
+  66%   2524
+  75%   2526
+  80%   2527
+  90%   6479
+  95%   9816
+  98%  10413
+  99%  10589
+ 100%  10706 (longest request)
+
+
+core 2, worker 50, external worker 50
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        gunicorn/20.0.4
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /external-test
+Document Length:        12 bytes
+
+Concurrency Level:      100
+Time taken for tests:   254.205 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      820000 bytes
+HTML transferred:       60000 bytes
+Requests per second:    19.67 [#/sec] (mean)
+Time per request:       5084.105 [ms] (mean)
+Time per request:       50.841 [ms] (mean, across all concurrent requests)
+Transfer rate:          3.15 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   2.5      0      20
+Processing:  3764 5052 208.2   5037    7268
+Waiting:     3764 5052 208.2   5037    7267
+Total:       3774 5052 209.4   5038    7286
+
+Percentage of the requests served within a certain time (ms)
+  50%   5038
+  66%   5042
+  75%   5046
+  80%   5049
+  90%   5058
+  95%   5072
+  98%   5147
+  99%   6291
+ 100%   7286 (longest request)
