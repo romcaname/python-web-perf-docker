@@ -7,8 +7,3 @@ RUN apt update &&  apt-get install -y apache2-utils netcat && apt-get -y install
 
 WORKDIR /code
 COPY . /code
-
-
-#!/usr/bin/env bash
-
-gunicorn -w $2 --bind :8001 external_app_flask:app

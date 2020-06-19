@@ -360,3 +360,316 @@ Percentage of the requests served within a certain time (ms)
   98%   5147
   99%   6291
  100%   7286 (longest request)
+
+
+
+core 2 worker 10 external worker 50
+
+CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+1629a8e2c8fd        python-web-perf-docker_db_1                 0.08%               15.55MiB / 500MiB   3.11%               2.42kB / 1.02kB     0B / 0B             7
+05a36695b22e        python-web-perf-docker_external_service_1   2.98%               638.8MiB / 1GiB     62.38%              39.1kB / 36.1kB     0B / 0B             52
+9f1495dc96b4        python-web-perf-docker_backend_service_1    7.30%               210.3MiB / 2GiB     10.27%              84.6kB / 70.3kB     0B / 0B             12
+1562f1fb986f        python-web-perf-docker_frontend_service_1   0.23%               3.172MiB / 200MiB   1.59%               32.5kB / 46.5kB     0B / 0B             2
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        gunicorn/20.0.4
+Server Hostname:        backend_service
+Server Port:            8000
+d
+Document Path:          /external-test
+Document Length:        12 bytes
+
+Concurrency Level:      100
+Time taken for tests:   1261.472 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      820000 bytes
+HTML transferred:       60000 bytes
+Requests per second:    3.96 [#/sec] (mean)
+Time per request:       25229.442 [ms] (mean)
+Time per request:       252.294 [ms] (mean, across all concurrent requests)
+Transfer rate:          0.63 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.8      0      10
+Processing:  2802 24995 1768.6  25204   26680
+Waiting:     2802 24995 1768.6  25204   26680
+Total:       2812 24995 1767.8  25205   26682
+
+Percentage of the requests served within a certain time (ms)
+  50%  25205
+  66%  25213
+  75%  25217
+  80%  25220
+  90%  25229
+  95%  25238
+  98%  25248
+  99%  25256
+ 100%  26682 (longest request)
+
+
+core 2 worker 20 external 50
+
+ CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+b4bf64c4d9ea        python-web-perf-docker_db_1                 0.06%               15.6MiB / 500MiB    3.12%               2.42kB / 1.02kB     0B / 0B             7
+7e23ccafce7e        python-web-perf-docker_external_service_1   2.72%               644.4MiB / 1GiB     62.93%              126kB / 123kB       0B / 0B             52
+ef685be1cdab        python-web-perf-docker_backend_service_1    4.19%               403.3MiB / 2GiB     19.69%              209kB / 199kB       0B / 0B             22
+684bb72054c2        python-web-perf-docker_frontend_service_1   0.20%               3.184MiB / 200MiB   1.59%               74.4kB / 83.8kB     0B / 0B             2
+
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        gunicorn/20.0.4
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /external-test
+Document Length:        12 bytes
+
+Concurrency Level:      100
+Time taken for tests:   635.667 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      820000 bytes
+HTML transferred:       60000 bytes
+Requests per second:    7.87 [#/sec] (mean)
+Time per request:       12713.344 [ms] (mean)
+Time per request:       127.133 [ms] (mean, across all concurrent requests)
+Transfer rate:          1.26 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   1.8      0      17
+Processing:  3670 12596 723.9  12589   15810
+Waiting:     3670 12595 723.1  12589   15810
+Total:       3685 12596 722.8  12590   15818
+
+Percentage of the requests served within a certain time (ms)
+  50%  12590
+  66%  12598
+  75%  12602
+  80%  12605
+  90%  12611
+  95%  12622
+  98%  14912
+  99%  15390
+ 100%  15818 (longest request)
+
+
+core 2 worker 30 external worker 50
+
+CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+c3741f29f231        python-web-perf-docker_db_1                 0.06%               15.44MiB / 500MiB   3.09%               2.35kB / 965B       0B / 0B             7
+03cbe804a0e8        python-web-perf-docker_external_service_1   9.13%               645.5MiB / 1GiB     63.04%              128kB / 122kB       0B / 0B             52
+c04a2c8067a7        python-web-perf-docker_backend_service_1    13.80%              596MiB / 2GiB       29.10%              206kB / 199kB       0B / 0B             32
+e38da7172ca1        python-web-perf-docker_frontend_service_1   0.42%               3.211MiB / 200MiB   1.61%               72.1kB / 81.7kB     0B / 0B             2
+
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        gunicorn/20.0.4
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /external-test
+Document Length:        12 bytes
+
+Concurrency Level:      100
+Time taken for tests:   425.238 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      820000 bytes
+HTML transferred:       60000 bytes
+Requests per second:    11.76 [#/sec] (mean)
+Time per request:       8504.755 [ms] (mean)
+Time per request:       85.048 [ms] (mean, across all concurrent requests)
+Transfer rate:          1.88 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   1.2      0      14
+Processing:  3197 8414 615.9   8241   14340
+Waiting:     3197 8414 615.9   8241   14340
+Total:       3211 8415 615.8   8241   14343
+
+Percentage of the requests served within a certain time (ms)
+  50%   8241
+  66%   8617
+  75%   8932
+  80%   9024
+  90%   9119
+  95%   9192
+  98%   9209
+  99%   9951
+ 100%  14343 (longest request)
+
+
+core 2 worker 40 external 50
+
+CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+af4b0faceadf        python-web-perf-docker_db_1                 0.00%               15.55MiB / 500MiB   3.11%               3.05kB / 1.1kB      0B / 0B             7
+302af2419d7f        python-web-perf-docker_external_service_1   0.09%               647.5MiB / 1GiB     63.23%              5.64MB / 5.76MB     0B / 0B             52
+b5fcadc77768        python-web-perf-docker_backend_service_1    0.04%               790.5MiB / 2GiB     38.60%              8.29MB / 8.47MB     0B / 0B             42
+
+
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        gunicorn/20.0.4
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /external-test
+Document Length:        12 bytes
+
+Concurrency Level:      100
+Time taken for tests:   320.357 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      820000 bytes
+HTML transferred:       60000 bytes
+Requests per second:    15.61 [#/sec] (mean)
+Time per request:       6407.134 [ms] (mean)
+Time per request:       64.071 [ms] (mean, across all concurrent requests)
+Transfer rate:          2.50 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.7      0       8
+Processing:  2771 6341 726.8   6318   11524
+Waiting:     2770 6341 726.8   6318   11524
+Total:       2779 6341 726.9   6318   11527
+
+Percentage of the requests served within a certain time (ms)
+  50%   6318
+  66%   6687
+  75%   6900
+  80%   6955
+  90%   7055
+  95%   7255
+  98%   7403
+  99%   8559
+ 100%  11527 (longest request)
+
+
+core 2 worker 45
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        gunicorn/20.0.4
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /external-test
+Document Length:        12 bytes
+
+Concurrency Level:      100
+Time taken for tests:   285.461 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      820000 bytes
+HTML transferred:       60000 bytes
+Requests per second:    17.52 [#/sec] (mean)
+Time per request:       5709.223 [ms] (mean)
+Time per request:       57.092 [ms] (mean, across all concurrent requests)
+Transfer rate:          2.81 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.8      0       9
+Processing:  2797 5656 579.7   5541   11041
+Waiting:     2797 5656 579.7   5541   11040
+Total:       2806 5656 580.0   5541   11045
+
+Percentage of the requests served within a certain time (ms)
+  50%   5541
+  66%   5748
+  75%   5884
+  80%   5915
+  90%   6087
+  95%   6192
+  98%   6362
+  99%   8429
+ 100%  11045 (longest request)

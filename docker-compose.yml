@@ -31,7 +31,7 @@ services:
           cpus: '2'
           memory: 2GB
     environment:
-      - PWPWORKERS=50
+      - PWPWORKERS=1
     command: >
 
       bash -c "
@@ -40,13 +40,15 @@ services:
           echo sleeping;
           sleep 1;
         done;
-      python wait_for_postgres.py && ./serve-gunicorn-flask.sh"
+      python wait_for_postgres.py && ./serve-uvicorn-quart.sh"
     ports:
       - "8000:8000"
     links:
       - db
       - external_service
     restart: always
+    logging:
+      driver: none
   frontend_service:
     depends_on:
       - backend_service
@@ -59,7 +61,7 @@ services:
       resources:
         limits:
           cpus: '1'
-          memory: 500MB
+          memory: 200MB
     links:
       - backend_service
     command: >
