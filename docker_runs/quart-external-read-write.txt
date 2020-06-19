@@ -1,0 +1,63 @@
+core 2 worker 10 external 50 external request 1sec
+
+CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+efd280c4f959        python-web-perf-docker_db_1                 3.89%               58.64MiB / 500MiB   11.73%              323kB / 198kB       0B / 0B             37
+50ef1099033e        python-web-perf-docker_external_service_1   7.42%               642.5MiB / 1GiB     62.74%              497kB / 497kB       0B / 0B             52
+6c803f88f142        python-web-perf-docker_backend_service_1    40.77%              399MiB / 2GiB       19.48%              1.1MB / 1.34MB      0B / 0B             63
+f298e6a1209f        python-web-perf-docker_frontend_service_1   2.72%               3.531MiB / 200MiB   1.77%               521kB / 403kB       0B / 0B             2
+
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        uvicorn
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /external-db-test
+Document Length:        126 bytes
+
+Concurrency Level:      100
+Time taken for tests:   102.804 seconds
+Complete requests:      5000
+Failed requests:        0
+Non-2xx responses:      5000
+Total transferred:      1320000 bytes
+HTML transferred:       630000 bytes
+Requests per second:    48.64 [#/sec] (mean)
+Time per request:       2056.072 [ms] (mean)
+Time per request:       20.561 [ms] (mean, across all concurrent requests)
+Transfer rate:          12.54 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   3.4      0     195
+Processing:  1022 2033 322.8   2004    4960
+Waiting:     1022 2031 318.8   2004    4959
+Total:       1023 2033 323.6   2005    4966
+
+Percentage of the requests served within a certain time (ms)
+  50%   2005
+  66%   2010
+  75%   2016
+  80%   2022
+  90%   2061
+  95%   2178
+  98%   2871
+  99%   4145
+ 100%   4966 (longest request)

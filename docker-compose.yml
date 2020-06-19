@@ -31,7 +31,7 @@ services:
           cpus: '2'
           memory: 2GB
     environment:
-      - PWPWORKERS=1
+      - PWPWORKERS=10
     command: >
 
       bash -c "
