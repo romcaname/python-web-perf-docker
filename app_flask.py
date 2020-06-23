@@ -12,6 +12,11 @@ def test():
     a, b = sync_db.get_row()
     return json.dumps({"a": str(a).zfill(10), "b": b})
 
+@app.route("/test-long-query")
+def test():
+    a, b = sync_db.emulate_long_running_query(sleep_time=2)
+    return json.dumps({"a": str(a).zfill(10), "b": b})
+
 
 @app.route("/external-test")
 def external_test():

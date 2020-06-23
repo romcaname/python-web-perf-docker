@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 CONCURRENCY=100
-REQUEST_COUNT=100000
+REQUEST_COUNT=5000
 
 ab -c $CONCURRENCY -n $REQUEST_COUNT http://backend_service:8000/test >current_run.txt 2>&1

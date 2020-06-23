@@ -4,12 +4,16 @@ import string
 
 pool = None
 
+import asyncpg
+
 
 async def get_pool():
     global pool
     if pool is None:
         pool = await aiopg.create_pool(
-            "dbname=test user=test password=test port=5432 host=db")
+            maxsize=40,
+            dsn="dbname=test user=test password=test port=5432 host=db"
+        )
     return pool
 
 
@@ -26,6 +30,15 @@ async def get_row():
     return a, b
 
 
+async def emulate_long_running_query(sleep_time=1):
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        async with conn.cursor() as cursor:
+            await cursor.execute("select pg_sleep(%s)", (sleep_time,))
+            await cursor.fetchall()
+    return 'a', 'b'
+
+
 async def write_row():
     pool = await get_pool()
     async with pool.acquire() as conn:
@@ -39,3 +52,26 @@ async def write_row():
             ((a, b),) = await cursor.fetchall()
 
     return a, b
+
+
+async def get_asyncpg_pool():
+    global pool
+    if not pool:
+        pool = await asyncpg.create_pool(database='test', user='test', password='test', port='5432', host='db')
+    return pool
+
+
+async def asyncpg_get_row():
+    pool = await get_asyncpg_pool()
+    async with pool.acquire() as conn:
+        async with conn.transaction():
+            index = random.randint(1, max_n)
+            result = await conn.fetchval("select a, b from test where a = %s", (index,))
+    return result
+
+
+async def asyncpg_emulate_long_running_query(sleep_time=1):
+    pool = await get_asyncpg_pool()
+    async with pool.acquire() as conn:
+        result = await conn.fetchval("select pg_sleep(1)")
+    return 'a', 'b'

@@ -28,6 +28,15 @@ def get_row():
     get_pool().putconn(conn)
     return a, b
 
+def emulate_long_running_query(sleep_time=1):
+    conn = get_pool().getconn()
+    cursor = conn.cursor()
+    cursor.execute("select pg_sleep(%s)", (sleep_time,))
+    cursor.fetchall()
+    cursor.close()
+    get_pool().putconn(conn)
+    return 'a', 'b'
+
 
 def write_row():
     conn = get_pool().getconn()

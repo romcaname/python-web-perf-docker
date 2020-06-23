@@ -1,4 +1,4 @@
-workers 50 external 50
+workers 50 external 50 - two requests of 2 sec, 1 sec, parallel
 
 CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
 b79621dbf36b        python-web-perf-docker_db_1                 0.01%               13.64MiB / 500MiB   2.73%               2.84kB / 1.02kB     0B / 0B             7
@@ -374,3 +374,65 @@ Percentage of the requests served within a certain time (ms)
   98%   5053
   99%   5214
  100%   5255 (longest request)
+
+
+1 worker 30 external worker
+CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+e7299b72803d        python-web-perf-docker_db_1                 0.16%               38.76MiB / 500MiB   7.75%               12.2kB / 13.5kB     0B / 0B             27
+7a152c0060e7        python-web-perf-docker_external_service_1   4.87%               392.2MiB / 1GiB     38.30%              107kB / 41.8kB      0B / 0B             32
+55b8163b67d8        python-web-perf-docker_backend_service_1    1.86%               48.31MiB / 2GiB     2.36%               88kB / 132kB        0B / 0B             6
+a7d36acaddf7        python-web-perf-docker_frontend_service_1   0.00%               3.168MiB / 200MiB   1.58%               15.1kB / 31.3kB     0B / 0B             2
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        uvicorn
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /external-test
+Document Length:        12 bytes
+
+Concurrency Level:      100
+Time taken for tests:   251.860 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      725000 bytes
+HTML transferred:       60000 bytes
+Requests per second:    19.85 [#/sec] (mean)
+Time per request:       5037.204 [ms] (mean)
+Time per request:       50.372 [ms] (mean, across all concurrent requests)
+Transfer rate:          2.81 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.9      0       8
+Processing:  2752 4988 292.5   5013    8894
+Waiting:     2750 4987 292.8   5012    8893
+Total:       2759 4988 292.1   5013    8899
+
+Percentage of the requests served within a certain time (ms)
+  50%   5013
+  66%   5016
+  75%   5018
+  80%   5019
+  90%   5023
+  95%   5032
+  98%   5071
+  99%   5187
+ 100%   8899 (longest request)
