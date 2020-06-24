@@ -1,4 +1,4 @@
-1 worker, pool of 10
+1 worker, pool of 10 aiopg
 
 CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
 77688a2f2777        python-web-perf-docker_db_1                 0.58%               30.39MiB / 500MiB   6.08%               122kB / 164kB       0B / 0B             17
@@ -502,3 +502,59 @@ Percentage of the requests served within a certain time (ms)
   99%  10174
  100%  19203 (longest request)
 
+
+3 second async pg 10 second connection pool
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        uvicorn
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /test
+Document Length:        29 bytes
+
+Concurrency Level:      100
+Time taken for tests:   1504.220 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      810000 bytes
+HTML transferred:       145000 bytes
+Requests per second:    3.32 [#/sec] (mean)
+Time per request:       30084.406 [ms] (mean)
+Time per request:       300.844 [ms] (mean, across all concurrent requests)
+Transfer rate:          0.53 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.8      0       7
+Processing:  3009 29813 3067.2  30081   57163
+Waiting:     3008 29813 3067.2  30080   57162
+Total:       3009 29813 3066.7  30081   57163
+
+Percentage of the requests served within a certain time (ms)
+  50%  30081
+  66%  30086
+  75%  30088
+  80%  30090
+  90%  30095
+  95%  30099
+  98%  30108
+  99%  30120
+ 100%  57163 (longest request)
