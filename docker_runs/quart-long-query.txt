@@ -558,3 +558,129 @@ Percentage of the requests served within a certain time (ms)
   98%  30108
   99%  30120
  100%  57163 (longest request)
+
+
+10 workers, 1 db long running query, 1 max connection each
+
+CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+d4f9b5d3679c        python-web-perf-docker_db_1                 0.36%               29.14MiB / 500MiB   5.83%               1.97MB / 1.62MB     0B / 0B             17
+3371ccf992fb        python-web-perf-docker_external_service_1   0.15%               631.8MiB / 1GiB     61.70%              2.28kB / 290B       0B / 0B             52
+7d672ec5e530        python-web-perf-docker_backend_service_1    4.75%               399.7MiB / 2GiB     19.51%              2.84MB / 3.37MB     0B / 0B             53
+e8832a1e496a        python-web-perf-docker_frontend_service_1   0.20%               3.816MiB / 200MiB   1.91%               1.4MB / 1.22MB      0B / 0B             3
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        uvicorn
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /test
+Document Length:        29 bytes
+
+Concurrency Level:      100
+Time taken for tests:   1807.031 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      810000 bytes
+HTML transferred:       145000 bytes
+Requests per second:    2.77 [#/sec] (mean)
+Time per request:       36140.629 [ms] (mean)
+Time per request:       361.406 [ms] (mean, across all concurrent requests)
+Transfer rate:          0.44 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   2.6      0      26
+Processing:  1004 35145 44858.5   2009  100658
+Waiting:     1004 35145 44858.5   2009  100658
+Total:       1004 35145 44858.3   2009  100658
+
+Percentage of the requests served within a certain time (ms)
+  50%   2009
+  66%  68386
+  75%  96529
+  80%  97543
+  90%  99530
+  95%  99571
+  98%  100545
+  99%  100567
+ 100%  100658 (longest request)
+
+
+10 workers, 1 db long running query, 4 max connection each
+
+CONTAINER ID        NAME                                        CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+665a7dab3be5        python-web-perf-docker_db_1                 3.08%               67.73MiB / 500MiB   13.55%              579kB / 481kB       0B / 0B             45
+d72e3094d443        python-web-perf-docker_external_service_1   0.10%               628.9MiB / 1GiB     61.42%              1.77kB / 290B       0B / 0B             52
+596a05423478        python-web-perf-docker_backend_service_1    15.31%              397.5MiB / 2GiB     19.41%              847kB / 981kB       0B / 0B             53
+8899e5a1e98f        python-web-perf-docker_frontend_service_1   1.26%               3.906MiB / 200MiB   1.95%               404kB / 365kB       0B / 0B             3
+
+This is ApacheBench, Version 2.3 <$Revision: 1757674 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking backend_service (be patient)
+Completed 500 requests
+Completed 1000 requests
+Completed 1500 requests
+Completed 2000 requests
+Completed 2500 requests
+Completed 3000 requests
+Completed 3500 requests
+Completed 4000 requests
+Completed 4500 requests
+Completed 5000 requests
+Finished 5000 requests
+
+
+Server Software:        uvicorn
+Server Hostname:        backend_service
+Server Port:            8000
+
+Document Path:          /test
+Document Length:        29 bytes
+
+Concurrency Level:      100
+Time taken for tests:   350.108 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      810000 bytes
+HTML transferred:       145000 bytes
+Requests per second:    14.28 [#/sec] (mean)
+Time per request:       7002.165 [ms] (mean)
+Time per request:       70.022 [ms] (mean, across all concurrent requests)
+Transfer rate:          2.26 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   1.9      0      21
+Processing:  1004 6747 9158.0   1012   44228
+Waiting:     1003 6747 9158.0   1012   44228
+Total:       1004 6748 9157.9   1013   44228
+
+Percentage of the requests served within a certain time (ms)
+  50%   1013
+  66%   1997
+  75%  19078
+  80%  20147
+  90%  22140
+  95%  23136
+  98%  24132
+  99%  24151
+ 100%  44228 (longest request)
